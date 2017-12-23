@@ -1,0 +1,17 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "declaration": true,
+        "moduleResolution": "node",
+        "target": "es6",
+        "module": "commonjs",
+        "rootDir": ".",
+        "outDir": "../dist"
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}

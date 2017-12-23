@@ -1,0 +1,26 @@
+{
+  "name": "@domojs/mihome",
+  "version": "1.0.7",
+  "author": {
+    "name": "npenin"
+  },
+  "devDependencies": {
+    "@types/request": "^2.0.9",
+    "@types/ws": "^3.2.1"
+  },
+  "deprecated": false,
+  "description": "",
+  "dependencies": {
+    "@akala/server": "^1.0.79",
+    "@domojs/devices": "^1.0.78",
+    "@domojs/service-discovery": "^1.0.4",
+    "miio": "^0.14.0"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublishOnly": "tsc -p src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "typings": "dist/index.d.ts"
+}
