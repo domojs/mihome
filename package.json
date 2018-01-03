@@ -1,6 +1,6 @@
 {
   "name": "@domojs/mihome",
-  "version": "1.0.7",
+  "version": "1.0.15",
   "author": {
     "name": "npenin"
   },
@@ -12,9 +12,9 @@
   "description": "",
   "dependencies": {
     "@akala/server": "^1.0.79",
-    "@domojs/devices": "^1.0.78",
+    "@domojs/devices": "^1.0.84",
     "@domojs/service-discovery": "^1.0.4",
-    "miio": "^0.14.0"
+    "miio": "npenin/miio"
   },
   "license": "MIT",
   "main": "dist/index.js",

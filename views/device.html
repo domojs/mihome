@@ -1,12 +1,51 @@
+<style>
+    .tabs input#tab-1:checked~.contents>.content[for="tab-1"],
+    .tabs input#tab-2:checked~.contents>.content[for="tab-2"],
+    .tabs input#tab-3:checked~.contents>.content[for="tab-3"] {
+        display: block;
+    }
+</style>
 <li>
-    <label class="col-md-3">IP</label>
-    <input class="col-md-9" type="text" name="IP" data-bind="{value:device.IP}" />
-</li>
-<li>
-    <label class="col-md-3">Token</label>
-    <input class="col-md-9" type="password" name="password" data-bind="{value:device.token}" />
-</li>
-<li>
-    <label class="col-md-3">Password</label>
-    <input class="col-md-9" type="password" name="password" data-bind="{value:device.password}" />
+    <div class="tabs">
+        <input id="tab-1" type="radio" name="tab-group" checked="checked" />
+        <label for="tab-1">IP Device</label>
+        <input id="tab-2" type="radio" name="tab-group" />
+        <label for="tab-2">Device Through gateway</label>
+        <div class="contents">
+            <ul class="content" for="tab-1">
+                <li class="form-group">
+                    <label class="col-md-3 control-label">IP</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" name="IP" data-bind="{value:device.IP}" />
+                    </div>
+                </li>
+                <li class="form-group">
+                    <label class="col-md-3 control-label">Token</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="password" name="password" data-bind="{value:device.token}" />
+                    </div>
+                </li>
+                <li class="form-group">
+                    <label class="col-md-3 control-label">Password</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="password" name="password" data-bind="{value:device.password}" />
+                    </div>
+                </li>
+            </ul>
+            <ul class="content" for="tab-2">
+                <li class="form-group">
+                    <label class="col-md-3 control-label">Gateway</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="gateway" data-bind="{value:device.gateway}" />
+                    </div>
+                </li>
+                <li class="form-group">
+                    <label class="col-md-3 control-label" for="subdevice">Device</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="subdevice" data-bind="{value:device.subdevice}" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </li>

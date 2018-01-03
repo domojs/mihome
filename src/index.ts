@@ -12,8 +12,6 @@ interface MiioDevice
     on(event: 'propertyChanged', handler: (e: { value: any }) => void);
 }
 
-
-
 interface MiioGateway extends MiioDevice
 {
     type: 'gateway';
@@ -41,7 +39,9 @@ const log = akala.log('domojs:mihome');
 var ready = false;
 var registered = false;
 
-akala.injectWithName(['$master', '$isModule', '$http', '$worker'], function (master: akala.worker.MasterRegistration, isModule: (m: string) => boolean, http: akala.Http, worker: EventEmitter)
+
+
+akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], function (master: akala.worker.MasterRegistration, isModule: (m: string) => boolean, http: akala.Http, worker: EventEmitter, router: akala.worker.Router)
 {
     if (isModule('@domojs/mihome'))
     {
@@ -49,7 +49,7 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker'], function (mas
         {
             ready = true;
             log('ready');
-        })
+        });
 
         var devices: { [key: string]: MiioDevice } = {};
         function getMainDevice(name)
@@ -66,11 +66,16 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker'], function (mas
             };
         }
 
+        router.get('/api/devices', akala.command([], function ()
+        {
+            return devices;
+        }));
+
         akala.worker.createClient('devices').then((c) =>
         {
             var serverDevice = device.createServerProxy(c);
             var client = deviceType.createClient(c)({
-                status: function (param)
+                getStatus: function (param)
                 {
                     var device = getMainDevice(param.device);
                     switch (device.capability)
@@ -88,10 +93,11 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker'], function (mas
                 },
                 save: function (param)
                 {
-                    if (param.body.IP)
-                        return miio.device({ address: param.body.IP }).then((device: MiioDevice) =>
+                    if (param.body && param.body.IP)
+                        return miio.device({ address: param.body.IP, token: param.body.token }).then((device: MiioDevice) =>
                         {
                             devices[param.device.name] = device;
+
                             if (device.type == 'gateway')
                                 param.device.commands = ['addDevice', 'stopAddDevice'];
                             param.device.subdevices = akala.map(device.capabilities, function (capability: string): domojs.devices.IDevice
@@ -99,35 +105,38 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker'], function (mas
                                 switch (capability)
                                 {
                                     case 'color:rgb':
-                                        return { name: 'rgb', commands: ['red', 'green', 'blue'], type: 'mihome' };
+                                        return { name: 'rgb', category: param.device.category, commands: ['red', 'green', 'blue'], type: 'mihome' };
                                     case 'brightness':
-                                        return { name: 'brightness', commands: ['set', 'off', 'on'], type: 'mihome' };
+                                        return { name: 'brightness', category: param.device.category, commands: ['set', 'off', 'on'], type: 'mihome' };
                                     case 'illuminance':
-                                        return { name: 'illuminance', commands: [], type: 'mihome', statusMethod: 'push' }
+                                        return { name: 'illuminance', category: param.device.category, commands: [], type: 'mihome', statusMethod: 'push' }
                                     default:
                                         return null;
                                     case 'temperature':
-                                        return { name: capability, commands: [], statusMethod: 'push', type: 'mihome' }
+                                        return { name: capability, category: param.device.category, commands: [], statusMethod: 'push', type: 'mihome' }
                                     case 'aqi':
-                                        return { name: capability, commands: [], statusMethod: 'push', type: 'mihome' }
+                                        return { name: capability, category: param.device.category, commands: [], statusMethod: 'push', type: 'mihome' }
                                     case 'brightness':
                                     case 'illuminance':
-                                        return { name: capability, commands: [], statusMethod: 'push', type: 'mihome' }
+                                        return { name: capability, category: param.device.category, commands: [], statusMethod: 'push', type: 'mihome' }
                                     case 'pressure':
-                                        return { name: capability, commands: [], statusMethod: 'push', type: 'mihome' }
+                                        return { name: capability, category: param.device.category, commands: [], statusMethod: 'push', type: 'mihome' }
                                     case 'humidity':
-                                        return { name: capability, commands: [], statusMethod: 'push', type: 'mihome' }
+                                        return { name: capability, category: param.device.category, commands: [], statusMethod: 'push', type: 'mihome' }
                                 }
                             }).filter((device) => !!device);
+
+                            return param.device;
                         });
                     if (param.device.name.indexOf('.') > -1)
                     {
                         var device = getMainDevice(param.device.name);
                         device.device.on('propertyChanged', e =>
                         {
-                            serverDevice.status({ device: param.device.name, state: e.value, type: 'mihome' });
+                            client.$proxy().pushStatus({ device: param.device.name, state: e.value });
                         });
                     }
+                    return param.device;
                 },
                 exec: function (param)
                 {
