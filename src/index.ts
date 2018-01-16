@@ -12,7 +12,19 @@ interface MiioDevice
     on(event: 'propertyChanged', handler: (e: { value: any }) => void);
 }
 
-interface MiioGateway extends MiioDevice
+interface BrightnessCapability
+{
+    readonly brightness: number;
+    setBrightness(value: number);
+}
+
+interface RGBCapability
+{
+    readonly rgb: { red: number, green: number, blue: number };
+    setRGB(value: { red: number, green: number, blue: number });
+}
+
+interface MiioGateway extends MiioDevice, BrightnessCapability, RGBCapability
 {
     type: 'gateway';
     devices: MiioDevice[];
@@ -35,6 +47,8 @@ interface MiioSensor extends MiioDevice
     pressure?: number;
 }
 
+type MiioDevices = MiioGateway | MiioSensor;
+
 const log = akala.log('domojs:mihome');
 var ready = false;
 var registered = false;
@@ -51,7 +65,7 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], fu
             log('ready');
         });
 
-        var devices: { [key: string]: MiioDevice } = {};
+        var devices: { [key: string]: MiioDevices } = {};
         function getMainDevice(name)
         {
             var indexOfDot = name.indexOf('.');
@@ -94,7 +108,7 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], fu
                 save: function (param)
                 {
                     if (param.body && param.body.IP)
-                        return miio.device({ address: param.body.IP, token: param.body.token }).then((device: MiioDevice) =>
+                        return miio.device({ address: param.body.IP, token: param.body.token }).then((device: MiioDevices) =>
                         {
                             devices[param.device.name] = device;
 
@@ -105,9 +119,18 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], fu
                                 switch (capability)
                                 {
                                     case 'color:rgb':
-                                        return { name: 'rgb', category: param.device.category, commands: ['red', 'green', 'blue'], type: 'mihome' };
+                                        return {
+                                            name: 'rgb',
+                                            category: param.device.category,
+                                            commands: {
+                                                red: { type: 'range', min: 1, max: 255, value: (device as RGBCapability).rgb.red },
+                                                green: { type: 'range', min: 1, max: 255, value: (device as RGBCapability).rgb.green },
+                                                blue: { type: 'range', min: 1, max: 255, value: (device as RGBCapability).rgb.blue }
+                                            },
+                                            type: 'mihome'
+                                        };
                                     case 'brightness':
-                                        return { name: 'brightness', category: param.device.category, commands: ['set', 'off', 'on'], type: 'mihome' };
+                                        return { name: 'brightness', category: param.device.category, commands: { off: 'off', set: { type: 'range', min: 1, max: 255, value: (device as BrightnessCapability).brightness } }, type: 'mihome' };
                                     case 'illuminance':
                                         return { name: 'illuminance', category: param.device.category, commands: [], type: 'mihome', statusMethod: 'push' }
                                     default:
@@ -140,11 +163,44 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], fu
                 },
                 exec: function (param)
                 {
-                    if (param.device && param.device)
+                    if (param.device)
                     {
-                        var device = devices[param.device];
+                        var device = getMainDevice(param.device);
+
                         if (device)
-                            console.log('run command ' + param.command + ' on ' + param.device);
+                        {
+                            console.log('run command ' + param.command + '(' + param.value + ') on ' + param.device);
+                            switch (device.capability)
+                            {
+                                case 'brightness':
+                                    switch (param.command)
+                                    {
+                                        case 'set':
+                                            (device.device as BrightnessCapability).setBrightness(Number(param.value));
+                                            break;
+                                        case 'off':
+                                            (device.device as BrightnessCapability).setBrightness(0);
+                                            break;
+                                    }
+                                    break;
+                                case 'rgb':
+                                    var rgbDevice = (device.device as RGBCapability);
+                                    
+                                    switch (param.command)
+                                    {
+                                        case 'red':
+                                            (device.device as RGBCapability).setRGB({ red: Number(param.value), green: rgbDevice.rgb.green, blue: rgbDevice.rgb.blue });
+                                            break;
+                                        case 'green':
+                                            (device.device as RGBCapability).setRGB({ green: Number(param.value), red: rgbDevice.rgb.red, blue: rgbDevice.rgb.blue });
+                                            break;
+                                        case 'blue':
+                                            (device.device as RGBCapability).setRGB({ blue: Number(param.value), green: rgbDevice.rgb.green, red: rgbDevice.rgb.red });
+                                            break;
+                                    }
+                                    break;
+                            }
+                        }
                     }
                 }
             });
