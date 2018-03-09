@@ -55,7 +55,7 @@ var registered = false;
 
 
 
-akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], function (master: akala.worker.MasterRegistration, isModule: (m: string) => boolean, http: akala.Http, worker: EventEmitter, router: akala.worker.Router)
+akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], function (master: akala.worker.MasterRegistration, isModule: akala.worker.IsModule, http: akala.Http, worker: EventEmitter, router: akala.worker.Router)
 {
     if (isModule('@domojs/mihome'))
     {
