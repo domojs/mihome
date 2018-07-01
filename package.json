@@ -11,16 +11,20 @@
   "deprecated": false,
   "description": "",
   "dependencies": {
-    "@akala/server": "^1.0.79",
-    "@domojs/devices": "^1.0.86",
-    "@domojs/service-discovery": "^1.0.4",
+    "@akala/server": "^2.0.28",
+    "@domojs/devices": "^1.1.5",
+    "@domojs/service-discovery": "^1.1.0",
     "miio": "github:npenin/miio"
   },
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "prepublishOnly": "tsc -p src",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\"",
+    "build:js": "tsc -p src",
+    "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+    "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+    "prepublishOnly": "npm run build",
+    "build": "npm run build:js"
   },
   "typings": "dist/index.d.ts"
 }

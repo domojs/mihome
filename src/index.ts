@@ -87,8 +87,8 @@ akala.injectWithName(['$master', '$isModule', '$http', '$worker', '$router'], fu
 
         akala.worker.createClient('devices').then((c) =>
         {
-            var serverDevice = device.createServerProxy(c);
-            var client = deviceType.createClient(c, {
+            var serverDevice = akala.api.jsonrpcws(device).createServerProxy(c);
+            var client = akala.api.jsonrpcws(deviceType).createClient(c, {
                 getStatus: function (param)
                 {
                     var device = getMainDevice(param.device);
