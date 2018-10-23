@@ -78,8 +78,8 @@
     ws "^3.3.3"
 
 "@domojs/service-discovery@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@domojs/service-discovery/-/service-discovery-1.1.0.tgz#0c5b35dd1c714e524eee882a09500bb997fdc991"
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@domojs/service-discovery/-/service-discovery-1.1.6.tgz#c65af177e3097f20ee5b5201751c3cf8210f96d5"
 
 "@types/caseless@*":
   version "0.12.1"
