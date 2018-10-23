@@ -18,11 +18,11 @@
   optionalDependencies:
     showdown "^1.8.6"
 
-"@akala/core@^2.0.0-17":
-  version "2.0.33"
-  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.33.tgz#f5c2de47b69616301aab4e4acd9060822515439d"
+"@akala/core@^2.0.33":
+  version "2.0.50"
+  resolved "https://registry.yarnpkg.com/@akala/core/-/core-2.0.50.tgz#03fda7ac02461cd6a42f6478326f0f81f93d97da"
   dependencies:
-    "@akala/json-rpc-ws" "^4.1.10"
+    "@akala/json-rpc-ws" "^7.0.0"
     "@types/mock-require" "^2.0.0"
     array-flatten "^2.1.1"
     browser-process-hrtime "^0.1.2"
@@ -35,11 +35,10 @@
     parseurl "^1.3.1"
     path-to-regexp "^1.7.0"
     routington "^1.0.3"
-    utf-8-validate "^3.0.3"
     utils-merge "^1.0.0"
     ws "^5.0.0"
 
-"@akala/json-rpc-ws@^4.1.10", "@akala/json-rpc-ws@^4.1.11", "@akala/json-rpc-ws@^4.1.23":
+"@akala/json-rpc-ws@^4.1.11", "@akala/json-rpc-ws@^4.1.23":
   version "4.1.23"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-4.1.23.tgz#d790f2790b8daf78e7ed1fdfb4001d6349e566ad"
   dependencies:
@@ -47,12 +46,20 @@
     uuid "^3.0.0"
     ws "^3.0.0"
 
-"@akala/server@^2.0.1-5", "@akala/server@^2.0.28", "@akala/server@^2.0.5":
-  version "2.0.28"
-  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.0.28.tgz#d0a424e0d2489e735f36577f4737b6915b1f5327"
+"@akala/json-rpc-ws@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-7.0.0.tgz#9d2e019d70b4ac86871d56e73ff6ef8f0b2a042c"
   dependencies:
-    "@akala/core" "^2.0.0-17"
-    "@akala/json-rpc-ws" "^4.1.23"
+    debug "^3.1.0"
+    uuid "^3.3.2"
+    ws "^6.0.0"
+
+"@akala/server@^2.0.1-5", "@akala/server@^2.0.28", "@akala/server@^2.0.5":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.1.1.tgz#83b46789e3d3b950064d24d5541b46d163af7cc2"
+  dependencies:
+    "@akala/core" "^2.0.33"
+    "@akala/json-rpc-ws" "^7.0.0"
     body-parser "^1.18.2"
     debug "^3.1.0"
     express "^4.16.2"
@@ -850,15 +857,11 @@ nan@~2.10.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
-nan@~2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
-
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-node-abi@^2.1.1, node-abi@^2.2.0:
+node-abi@^2.2.0:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.4.3.tgz#43666b7b17e57863e572409edbb82115ac7af28b"
   dependencies:
@@ -992,25 +995,6 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
 
-prebuild-install@~2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-2.3.0.tgz#19481247df728b854ab57b187ce234211311b485"
-  dependencies:
-    expand-template "^1.0.2"
-    github-from-package "0.0.0"
-    minimist "^1.2.0"
-    mkdirp "^0.5.1"
-    node-abi "^2.1.1"
-    noop-logger "^0.1.1"
-    npmlog "^4.0.1"
-    os-homedir "^1.0.1"
-    pump "^1.0.1"
-    rc "^1.1.6"
-    simple-get "^1.4.2"
-    tar-fs "^1.13.0"
-    tunnel-agent "^0.6.0"
-    xtend "4.0.1"
-
 prebuild-install@~4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/prebuild-install/-/prebuild-install-4.0.0.tgz#206ce8106ce5efa4b6cf062fc8a0a7d93c17f3a8"
@@ -1046,7 +1030,7 @@ pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
 
-pump@^1.0.0, pump@^1.0.1:
+pump@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/pump/-/pump-1.0.3.tgz#5dfe8311c33bbf6fc18261f9f34702c47c08a954"
   dependencies:
@@ -1246,14 +1230,6 @@ simple-concat@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/simple-concat/-/simple-concat-1.0.0.tgz#7344cbb8b6e26fb27d66b2fc86f9f6d5997521c6"
 
-simple-get@^1.4.2:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/simple-get/-/simple-get-1.4.3.tgz#e9755eda407e96da40c5e5158c9ea37b33becbeb"
-  dependencies:
-    once "^1.3.1"
-    unzip-response "^1.0.0"
-    xtend "^4.0.0"
-
 simple-get@^2.7.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/simple-get/-/simple-get-2.8.1.tgz#0e22e91d4575d87620620bc91308d57a77f44b5d"
@@ -1404,18 +1380,6 @@ unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
 
-unzip-response@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-1.0.2.tgz#b984f0877fc0a89c2c773cc1ef7b5b232b5b06fe"
-
-utf-8-validate@^3.0.3:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/utf-8-validate/-/utf-8-validate-3.0.4.tgz#a79962cfa4142dda7050234e7e9b37b33907d2af"
-  dependencies:
-    bindings "~1.3.0"
-    nan "~2.7.0"
-    prebuild-install "~2.3.0"
-
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -1424,7 +1388,7 @@ utils-merge@1.0.1, utils-merge@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
 
-uuid@^3.0.0, uuid@^3.1.0, uuid@^3.2.1:
+uuid@^3.0.0, uuid@^3.1.0, uuid@^3.2.1, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
@@ -1489,6 +1453,12 @@ ws@^5.0.0:
   dependencies:
     async-limiter "~1.0.0"
 
+ws@^6.0.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.0.tgz#119a9dbf92c54e190ec18d10e871d55c95cf9373"
+  dependencies:
+    async-limiter "~1.0.0"
+
 xml2js@^0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/xml2js/-/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
@@ -1500,7 +1470,7 @@ xmlbuilder@~9.0.1:
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
 
-xtend@4.0.1, xtend@^4.0.0:
+xtend@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
