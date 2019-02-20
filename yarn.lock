@@ -77,9 +77,9 @@
     xml2js "^0.4.19"
 
 "@domojs/devices@^1.2.7":
-  version "1.2.15"
-  resolved "https://registry.yarnpkg.com/@domojs/devices/-/devices-1.2.15.tgz#b86ac4e883f0d6f99032d76920dc6006c08c5b1d"
-  integrity sha512-azl+YsiuSrNVBaGNTDgNumZrm1olmqX/bXyV7Su8V6+k6Vnj64J1sGpKouArpJfKQv8IpXWkWMGN1xhZLrVvlg==
+  version "1.2.16"
+  resolved "https://registry.yarnpkg.com/@domojs/devices/-/devices-1.2.16.tgz#30c1f093e72cfecf1e26d91878ddaacab73fd13c"
+  integrity sha512-+/bMnSGDKD89Cd46rCGIkmlZvk0NRJcOVGHJs+kNAROMSr7Ey8QHEJZix70bjZxHw4DZ+nfd/Ol8xqUfRAh8qQ==
   dependencies:
     "@akala-modules/core" "^1.0.25"
     "@akala/client" "^2.0.71"
