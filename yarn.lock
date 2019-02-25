@@ -39,7 +39,7 @@
     utils-merge "^1.0.0"
     ws "^6.1.3"
 
-"@akala/json-rpc-ws@^4.1.11", "@akala/json-rpc-ws@^4.1.23":
+"@akala/json-rpc-ws@^4.1.11":
   version "4.1.27"
   resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-4.1.27.tgz#9936cc5c72763ed0fd9450cf9810d71922864b1e"
   integrity sha512-LO9sXQytkoAimL2LTwaNrT89o7U08i7MoUsB7f4zyegw2et4QRrD1e5FXGcZC53DvlWL/+927zeRtRwe9PHlDA==
@@ -57,7 +57,7 @@
     uuid "^3.3.2"
     ws "^6.0.0"
 
-"@akala/server@^2.0.5", "@akala/server@^2.1.12", "@akala/server@^2.1.15":
+"@akala/server@^2.0.5", "@akala/server@^2.1.12", "@akala/server@^2.1.16":
   version "2.1.17"
   resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.1.17.tgz#31afe57f55967bf5ae3bb3677a64e70372f75983"
   integrity sha512-E3jDoHGfltqy90jlXaLjjJJibxlXsrlTZE/jC/k0K7N9R1yx71ksTievPVSGd72mE7ZBtx9NQck8xh+eDOWM1g==
@@ -77,14 +77,14 @@
     xml2js "^0.4.19"
 
 "@domojs/devices@^1.2.7":
-  version "1.2.19"
-  resolved "https://registry.yarnpkg.com/@domojs/devices/-/devices-1.2.19.tgz#9045f7eb41de7c36aac34eda1dae1e6a51a3a098"
-  integrity sha512-bDV/kshVhsrkYhbEktuLnGfBz0u4ZyWcYOJp/oc06iDNRpsAhMEYk4CE4aAzvKztbp3i0kM5bghHMK0Ilrbj3w==
+  version "1.2.38"
+  resolved "https://registry.yarnpkg.com/@domojs/devices/-/devices-1.2.38.tgz#e92a191e7f2be8b8052e7a35077824e9aea744f8"
+  integrity sha512-ELaCFgLGr9Ba+Ncb6JB//ET+OhYzkSWZ5iLdBaBTO/erhBtZF5S0tTu1GICqvj9Z+z1dTOJsh2dwnk3hrcS4TA==
   dependencies:
     "@akala-modules/core" "^1.0.25"
     "@akala/client" "^2.0.71"
-    "@akala/json-rpc-ws" "^4.1.23"
-    "@akala/server" "^2.1.15"
+    "@akala/json-rpc-ws" "^7.0.1"
+    "@akala/server" "^2.1.16"
     snyk "^1.129.0"
     uuid "^3.3.2"
 
