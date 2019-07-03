@@ -1,0 +1,26 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - '@domojs/devices > snyk > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > @snyk/dep-graph > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > inquirer > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > snyk-config > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > snyk-nodejs-lockfile-parser > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > snyk-nuget-plugin > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > snyk-php-plugin > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > @snyk/dep-graph > graphlib > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > snyk-go-plugin > graphlib > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
+    - '@domojs/devices > snyk > snyk-nodejs-lockfile-parser > graphlib > lodash':
+        patched: '2019-07-03T22:08:11.626Z'
