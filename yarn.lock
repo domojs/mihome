@@ -58,9 +58,9 @@
     ws "^6.0.0"
 
 "@akala/server@^2.0.5", "@akala/server@^2.1.12", "@akala/server@^2.1.16":
-  version "2.1.38"
-  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.1.38.tgz#831d0773355214513b287154425f06fc93f9fd25"
-  integrity sha512-ptlooRwUdPEqgJH/0DKGIp4tPpMZ3kQdK236t8h/IM3HC2EWAHXhf1fPaDM6obsUJYMVRw3iLh7lgvu7B/MQvw==
+  version "2.1.40"
+  resolved "https://registry.yarnpkg.com/@akala/server/-/server-2.1.40.tgz#d77a6dc632e6872719d81877d4eed9a1d3b469b3"
+  integrity sha512-HeKEi98J/fOZBN3DlBP4cRL1lW6O9yGWVGm+X+w8KDnw8HMBoBVMRTp1wagqou+kcHxH6J7YLQBuplA1d0Qvsg==
   dependencies:
     "@akala/core" "^2.0.87"
     "@akala/json-rpc-ws" "^7.0.0"
