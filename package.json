@@ -15,7 +15,8 @@
     "@akala/server": "^2.1.12",
     "@domojs/devices": "^1.2.7",
     "@domojs/service-discovery": "^1.1.7",
-    "miio": "github:npenin/miio"
+    "miio": "github:npenin/miio",
+    "snyk": "^1.189.0"
   },
   "license": "MIT",
   "main": "dist/index.js",
@@ -25,7 +26,10 @@
     "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
     "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
     "prepublishOnly": "npm run build",
-    "build": "npm run build:js"
+    "build": "npm run build:js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
-  "typings": "dist/index.d.ts"
+  "typings": "dist/index.d.ts",
+  "snyk": true
 }
