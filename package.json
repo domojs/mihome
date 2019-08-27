@@ -12,7 +12,7 @@
   "deprecated": false,
   "description": "",
   "dependencies": {
-    "@akala/server": "^2.1.12",
+    "@akala/server": "^3.0.21",
     "@domojs/devices": "^1.2.7",
     "@domojs/service-discovery": "^1.1.7",
     "miio": "github:npenin/miio"
